@@ -12,7 +12,7 @@ export default function Footer() {
           {/* 1st Column: Left Logo & Legal Name */}
           <div className="md:col-span-4 space-y-3">
             <a href="#home" className="inline-block hover:opacity-90 transition-opacity">
-              <NisLogo size={36} preferImage={true} />
+              <NisLogo size={85} preferImage={true} />
             </a>
             <div className="pt-1">
               <p className="text-xs font-bold tracking-wider uppercase text-stone-800 font-['Aeonik',sans-serif]">

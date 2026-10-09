@@ -27,19 +27,9 @@ export default function Hero({ onBookCall }: HeroProps) {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="inline-flex items-center mb-2 px-4 py-1.5 rounded-full bg-[#F5B82E] text-[12px] sm:text-[12.5px] font-['Montserrat',sans-serif] font-bold tracking-wide text-stone-950 shadow-2xs"
+          className="inline-flex items-center mb-6 px-4 py-1.5 rounded-full bg-[#F5B82E] text-[12px] sm:text-[12.5px] font-['Montserrat',sans-serif] font-bold tracking-wide text-stone-950 shadow-2xs"
         >
           <span>U.S. Focused Revenue & Lead Systems</span>
-        </motion.div>
-
-        {/* User requested text below the box */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="text-xs sm:text-sm font-medium text-stone-600 mb-5 tracking-wide"
-        >
-          tehmeena
         </motion.div>
 
         {/* Headline with exact specifications: Aeonik, normal, 400, rgb(17, 17, 17), 72px / 72px */}
