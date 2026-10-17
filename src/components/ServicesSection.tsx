@@ -37,7 +37,7 @@ export default function ServicesSection({ onBookCall }: ServicesSectionProps) {
     : NIS_SERVICES.filter(s => ['website-funnel-dev', 'ai-growth-solutions'].includes(s.id));
 
   return (
-    <section id="services" className="py-16 md:py-24 relative">
+    <section id="services" className="py-16 md:py-24 relative scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header with 2 columns: Left text, Right subtle geometric graphic */}

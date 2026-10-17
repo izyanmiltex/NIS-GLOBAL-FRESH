@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import NisLogo from './NisLogo';
 import { ArrowRight, Menu, X, Mail } from 'lucide-react';
 
@@ -7,16 +7,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onContactNow }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Header menu as requested: Home, About, Services
   const navLinks = [
@@ -26,17 +17,17 @@ export default function Navbar({ onContactNow }: NavbarProps) {
   ];
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 bg-[#ffffff] border-b border-stone-200/80 shadow-xs ${
-        scrolled ? 'py-2.5' : 'py-3'
-      }`}
-    >
+    <header className="absolute top-0 left-0 right-0 z-50 w-full bg-transparent border-b border-transparent py-2 sm:py-2.5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo on Left - official NIS Global Marketing logo from https://aryezmiltex.com/nislogo */}
-          <a href="#home" className="hover:opacity-90 transition-opacity flex items-center py-0.5">
-            <NisLogo size={85} className="max-h-16 sm:max-h-22" preferImage={true} />
+          <a href="#home" className="hover:opacity-90 transition-opacity flex items-center py-0">
+            <NisLogo
+              size={83.6}
+              mobileSize={57.1}
+              preferImage={true}
+            />
           </a>
 
           {/* Right Group: Links followed by CONTACT button */}

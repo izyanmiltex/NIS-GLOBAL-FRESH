@@ -27,7 +27,7 @@ export default function WhoWeAreSection({ onBookCall }: WhoWeAreProps) {
   ];
 
   return (
-    <section id="about" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="about" className="py-16 md:py-24 relative overflow-hidden scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Grid: Left Narrative + Right Core Pillars */}

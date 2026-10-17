@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import nisLogoImg from '../assets/nislogo.jpg';
+import nisLogoImg from '../assets/nislogo.png';
 
 interface NisLogoProps {
   size?: number;
+  mobileSize?: number;
   className?: string;
   showTagline?: boolean;
   variant?: 'full' | 'compact' | 'icon';
@@ -136,23 +137,41 @@ export function NisLogoMark({ size = 40, className = '' }: { size?: number; clas
 
 export default function NisLogo({
   size = 42,
+  mobileSize,
   className = '',
   showTagline = true,
   variant = 'full',
   preferImage = true,
 }: NisLogoProps) {
   const [useFallback, setUseFallback] = useState(false);
+  const [logoId] = useState(() => 'nis-logo-' + Math.random().toString(36).substring(2, 8));
 
   // If user requested the official image logo, render the high-res asset
   // (mirrored from https://aryezmiltex.com/nislogo with zero risk of broken loading)
   if (preferImage && !useFallback) {
+    const desktopH = size;
+    const mobileH = mobileSize !== undefined ? mobileSize : size;
     return (
-      <div className={`inline-flex items-center select-none ${className}`}>
+      <div className={`inline-flex items-center bg-transparent select-none ${className}`}>
+        {mobileSize !== undefined && (
+          <style>{`
+            .${logoId} {
+              height: ${mobileH}px !important;
+              max-height: ${mobileH}px !important;
+            }
+            @media (min-width: 640px) {
+              .${logoId} {
+                height: ${desktopH}px !important;
+                max-height: ${desktopH}px !important;
+              }
+            }
+          `}</style>
+        )}
         <img
           src={nisLogoImg}
           alt="NIS GLOBAL MARKETING, LLC"
-          style={{ height: size, maxHeight: size }}
-          className="w-auto object-contain mix-blend-multiply transition-opacity duration-200"
+          style={mobileSize !== undefined ? undefined : { height: size, maxHeight: size }}
+          className={`${logoId} w-auto max-w-full max-h-full object-contain bg-transparent transition-all duration-200`}
           onError={() => setUseFallback(true)}
         />
       </div>

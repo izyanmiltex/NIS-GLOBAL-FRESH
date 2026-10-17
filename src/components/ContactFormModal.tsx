@@ -130,7 +130,7 @@ export default function ContactFormModal({ isOpen, onClose, serviceInquiry }: Co
                 <div className="flex items-center gap-2">
                   <Phone size={13} className="text-[#F5B82E]" />
                   <a href="tel:+19177356865" className="hover:underline text-stone-900 font-semibold">
-                    +1 91773 56865
+                    917-735-6865
                   </a>
                 </div>
                 <div className="text-stone-500 pt-1 border-t border-stone-100">
@@ -270,7 +270,7 @@ export default function ContactFormModal({ isOpen, onClose, serviceInquiry }: Co
         <div className="px-6 py-3 bg-stone-100 border-t border-stone-200 text-stone-600 text-[11px] flex items-center justify-between shrink-0">
           <span>NIS GLOBAL MARKETING, LLC</span>
           <a href="tel:+19177356865" className="font-semibold text-stone-900 hover:underline">
-            +1 91773 56865
+            917-735-6865
           </a>
         </div>
       </div>
