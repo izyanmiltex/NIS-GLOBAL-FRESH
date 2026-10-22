@@ -42,10 +42,10 @@ export default function Footer() {
               <div className="flex items-center gap-2 text-stone-700">
                 <Mail size={15} className="text-[#7E967A] shrink-0" />
                 <a
-                  href="mailto:info@nisglobalmarketing.com"
+                  href="mailto:ragib@nisglobalmarketing.com"
                   className="hover:text-black hover:underline transition-colors"
                 >
-                  info@nisglobalmarketing.com
+                  ragib@nisglobalmarketing.com
                 </a>
               </div>
             </div>
@@ -82,10 +82,10 @@ export default function Footer() {
             </a>
             <span className="text-stone-300">•</span>
             <a
-              href="mailto:info@nisglobalmarketing.com"
+              href="mailto:ragib@nisglobalmarketing.com"
               className="hover:text-stone-900 hover:underline transition-colors"
             >
-              info@nisglobalmarketing.com
+              ragib@nisglobalmarketing.com
             </a>
           </div>
         </div>

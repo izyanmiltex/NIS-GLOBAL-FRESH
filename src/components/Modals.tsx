@@ -25,15 +25,45 @@ export default function Modals({ isOpen, onClose, initialMode = 'bookCall', serv
   const [selectedTime, setSelectedTime] = useState('Tomorrow 2:00 PM EST');
   const [bottleneck, setBottleneck] = useState('Need Predictable Lead Flow');
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await fetch('https://formsubmit.co/ajax/ragib@nisglobalmarketing.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          company: company.trim() || 'Not provided',
+          website: website.trim() || 'Not provided',
+          tab_type: activeTab,
+          details: activeTab === 'bookCall' 
+            ? `Industry: ${industry}, Preferred Time: ${selectedTime}`
+            : `Bottleneck: ${bottleneck}, Monthly Goal: ${monthlyGoal}`,
+          service_selected: serviceName || 'None',
+          _subject: `New Lead Inquiry from ${name.trim()} [NIS Global Marketing]`,
+          _captcha: 'false',
+        }),
+      });
+    } catch {
+      // ignore network errors
+    }
+
+    setIsSubmitting(false);
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
       onClose();
-    }, 2600);
+    }, 2800);
   };
 
   return (
@@ -57,18 +87,13 @@ export default function Modals({ isOpen, onClose, initialMode = 'bookCall', serv
         </div>
 
         {submitted ? (
-          <div className="py-10 text-center space-y-3 animate-in zoom-in-95 duration-300">
-            <div className="w-16 h-16 bg-[#F5B82E]/20 text-[#121417] rounded-full mx-auto flex items-center justify-center">
-              <CheckCircle2 size={36} className="text-emerald-600" />
+          <div className="py-12 text-center animate-in zoom-in-95 duration-300 flex flex-col items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 shadow-xs">
+              <CheckCircle2 size={36} strokeWidth={2.5} />
             </div>
-            <h3 className="text-2xl font-extrabold text-[#121417]">
-              {activeTab === 'bookCall' ? 'Strategy Session Confirmed!' : 'Growth Plan In Preparation!'}
+            <h3 className="text-2xl font-bold text-[#121417] tracking-tight font-['Aeonik',sans-serif]">
+              Inquiry sent
             </h3>
-            <p className="text-xs sm:text-sm text-stone-600 max-w-sm mx-auto leading-relaxed">
-              {activeTab === 'bookCall'
-                ? `A calendar invite and preparation brief have been sent to ${email || 'your email'}. Our senior strategist looks forward to speaking with you.`
-                : `We are analyzing your market landscape and generating your custom growth roadmap. Expect your proposal within 2 hours.`}
-            </p>
           </div>
         ) : (
           <div>
@@ -231,9 +256,10 @@ export default function Modals({ isOpen, onClose, initialMode = 'bookCall', serv
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-full bg-[#121417] text-white text-xs font-bold tracking-wider uppercase hover:bg-stone-800 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 rounded-full bg-[#121417] text-white text-xs font-bold tracking-wider uppercase hover:bg-stone-800 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs disabled:opacity-50"
                   >
-                    <span>Confirm Free Strategy Call</span>
+                    <span>{isSubmitting ? 'Sending...' : 'Confirm Free Strategy Call'}</span>
                     <ArrowRight size={14} />
                   </button>
                 </div>
@@ -327,10 +353,11 @@ export default function Modals({ isOpen, onClose, initialMode = 'bookCall', serv
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-full bg-[#F5B82E] text-stone-950 text-xs font-bold tracking-wider uppercase hover:bg-[#eab027] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 rounded-full bg-[#F5B82E] text-stone-950 text-xs font-bold tracking-wider uppercase hover:bg-[#eab027] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs disabled:opacity-50"
                   >
                     <Sparkles size={14} />
-                    <span>Generate Custom Growth Plan</span>
+                    <span>{isSubmitting ? 'Generating...' : 'Generate Custom Growth Plan'}</span>
                   </button>
                 </div>
               </form>

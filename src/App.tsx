@@ -110,7 +110,7 @@ export default function App() {
         <Footer />
       </FadeInSection>
 
-      {/* Contact Pop-up Form (dispatches inquiries directly to info@nisglobalmarketing.com) */}
+      {/* Contact Pop-up Form (dispatches inquiries directly to ragib@nisglobalmarketing.com) */}
       <ContactFormModal
         isOpen={contactModalOpen}
         onClose={() => setContactModalOpen(false)}

@@ -172,7 +172,7 @@ export default function CalendlyModal({ isOpen, onClose, serviceInquiry }: Calen
             )}
 
             <a
-              href={`mailto:growth@nisglobalmarketing.com?subject=Strategy%20Call%20Booking`}
+              href={`mailto:ragib@nisglobalmarketing.com?subject=Strategy%20Call%20Booking`}
               className="text-[11px] font-bold text-stone-700 hover:text-stone-950 underline"
             >
               Need another time? Email us
